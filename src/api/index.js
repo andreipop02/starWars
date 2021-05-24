@@ -1,1 +1,1 @@
-export {fetchAllFilms} from './swAPI';
+export {fetchResults} from './swAPI';

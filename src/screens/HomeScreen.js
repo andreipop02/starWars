@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
+import {View, Text, TouchableOpacity, ImageBackground, Button} from 'react-native';
 import homeStyle from '../styles/HomeScreenStyles';
 import background from '../styles/BackgroundStyle';
 
-const home = ({navigation}) => {
+const Home = ({navigation}) => {
   return (
     <View style={({alignItems: 'center'}, {flex: 1})}>
       <ImageBackground
@@ -20,4 +20,4 @@ const home = ({navigation}) => {
   );
 };
 
-export default home;
+export default Home;

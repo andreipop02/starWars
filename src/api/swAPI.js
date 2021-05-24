@@ -1,16 +1,17 @@
 import axios from 'axios';
 import {BASE_URL} from '../constants/url';
 
-export const fetchAllFilms = async () => {
-  console.log(`${BASE_URL}/films/`)
+export const fetchResults = async (resultType) => {
+  
   return axios
-    .get(`${BASE_URL}/films/`)
+    .get(resultType)
     .then(response => {
-      console.log(response);
-      return response.data.results;
+      return response.data;
     })
     .catch(err => {
       console.log(err);
       return err;
     });
 };
+
+
