@@ -12,11 +12,11 @@ const FilmDetails = ({route, navigation}) => {
     style={background.backgroundImage}
     source={require('../../assets/starBackground.jpg')}>
     <View style={FilmDetailsStyles.mainContainer}>
-      <Button style={FilmDetailsStyles.button} title="Go to Characters" onPress = {() => navigation.navigate('characters',`${url}`)}/>
-      <Button style={FilmDetailsStyles.button} title="Go to Planets" onPress = {() => navigation.navigate('planets',`${url}`)}/>
-      <Button style={FilmDetailsStyles.button} title="Go to Starships" onPress = {() => navigation.navigate('starships',`${url}`)}/>
-      <Button style={FilmDetailsStyles.button} title="Go to Vehicles" onPress = {() => navigation.navigate('vehicles',`${url}`)}/>
-      <Button style={FilmDetailsStyles.button} title="Go to Species" onPress = {() => navigation.navigate('species',`${url}`)}/>
+      <Button style={FilmDetailsStyles.button} title="Go to Characters" onPress = {() => navigation.navigate('characters',url)}/>
+      <Button style={FilmDetailsStyles.button} title="Go to Planets" onPress = {() => navigation.navigate('planets',url)}/>
+      <Button style={FilmDetailsStyles.button} title="Go to Starships" onPress = {() => navigation.navigate('starships',url)}/>
+      <Button style={FilmDetailsStyles.button} title="Go to Vehicles" onPress = {() => navigation.navigate('vehicles',url)}/>
+      <Button style={FilmDetailsStyles.button} title="Go to Species" onPress = {() => navigation.navigate('species',url)}/>
     </View>
     </ImageBackground>
   );

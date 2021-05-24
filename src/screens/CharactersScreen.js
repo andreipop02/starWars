@@ -35,12 +35,12 @@ const Characters = ({route, navigation}) => {
   return (
     <View>
       <FlatList
-        data={results}
+        data={results.characters}
         keyExtractor={() => Math.random() * 9999}
         renderItem={({item}) => {
           return (
             <View>
-              <Text style={{marginTop:20}}>{item.characters}</Text>
+              <Text style={{marginTop:20, marginLeft:20}}>{item}</Text>
             </View>
           );
         }}
