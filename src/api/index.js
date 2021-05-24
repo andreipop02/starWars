@@ -1,0 +1,1 @@
+export {fetchAllFilms} from './swAPI';
