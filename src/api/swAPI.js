@@ -1,8 +1,6 @@
 import axios from 'axios';
-import {BASE_URL} from '../constants/url';
 
-export const fetchResults = async (resultType) => {
-  
+export const fetchResults = async resultType => {
   return axios
     .get(resultType)
     .then(response => {
@@ -13,5 +11,4 @@ export const fetchResults = async (resultType) => {
       return err;
     });
 };
-
 
