@@ -11,4 +11,3 @@ export const fetchResults = async resultType => {
       return err;
     });
 };
-

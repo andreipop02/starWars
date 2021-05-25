@@ -1,29 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {fetchResults} from '../api/index';
 import {BASE_URL} from '../constants/url';
+import homeStyle from '../styles/HomeScreenStyles';
 
 const Characters = ({route, navigation}) => {
-  const url = route.params;
-  console.log(url.item.id);
-  const [results, setResults] = useState([]);
+  const url = route.params.results;
 
-  const search = async () => {
-    const response = await fetchResults(`${url.item.id}`);
-    setResults(response);
-  };
+  const [people, setPeople] = useState([]);
+
+   const getNames = async () => {
+      const name = await fetchResults(`${url[1]}`);
+      setPeople(name);
+    };
+  
   useEffect(() => {
-    search();
+    getNames();
   }, []);
-
+  console.log(people);
   return (
     <View style={{justifyContent: 'space-between'}}>
       <FlatList
-        data={results.characters}
+        data={people.name}
         keyExtractor={() => Math.random() * 9999}
         renderItem={({item}) => {
           return (
-            <View>
+            <View style={{alignItems: 'center'}}>
               <Text style={{marginTop: 20, marginLeft: 20}}>{item}</Text>
             </View>
           );
