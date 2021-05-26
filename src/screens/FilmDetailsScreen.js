@@ -29,7 +29,6 @@ const FilmDetails = ({route, navigation}) => {
       source={require('../../assets/starBackground.jpg')}>
       <Button title="GO BACK" onPress={() => navigation.goBack()} />
       <View style={FilmDetailsStyles.mainContainer}>
-
         <TouchableOpacity
           style={SecondaryScreensStyles.touchableOpacity}
           onPress={() => navigation.navigate('characters', {results})}>
@@ -59,7 +58,6 @@ const FilmDetails = ({route, navigation}) => {
           onPress={() => navigation.navigate('species', {results})}>
           <Text style={SecondaryScreensStyles.nameText}>Go to Species</Text>
         </TouchableOpacity>
-        
       </View>
     </ImageBackground>
   );

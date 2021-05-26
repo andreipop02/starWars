@@ -7,5 +7,9 @@ const roots = {
   starshipsScreen: 'starships',
   vehiclesScreen: 'vehicles',
   speciesScreen: 'species',
+  characterDetails:'characterDetails',
+  planetDetails:'planetDetails',
+  vehiclesDetails:'vehiclesDetails',
+  speciesDetails:'speciesDetails'
 };
 export default roots;

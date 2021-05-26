@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Button, ImageBackground} from 'react-native';
 import ShowResults from '../components/ShowResults';
-import FilmsStyles from '../styles/FilmsListStyles';
 import background from '../styles/BackgroundStyle';
 import {fetchResults} from '../api/index';
 import {BASE_URL} from '../constants/url';

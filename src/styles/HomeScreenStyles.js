@@ -8,13 +8,19 @@ const homeStyle = StyleSheet.create({
     color: 'white',
     fontWeight:'bold'
   },
+  secondaryText: {
+    marginTop:50, 
+    color:'white',
+    fontSize:15,
+  },
   touchableOpacity: {
-    backgroundColor: 'rgb(0,0,153)',
+    backgroundColor: 'rgb(30,144,255)',
     height: 30,
     width: 150,
     alignItems: 'center',
     marginTop: 50,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderRadius:15
   },
 });
 

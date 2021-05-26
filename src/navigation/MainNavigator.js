@@ -10,7 +10,10 @@ import Planets from '../screens/PlanetsScreen';
 import Starships from '../screens/StarshipsScreen';
 import Vehicles from '../screens/VehiclesScreen';
 import Species from '../screens/SpeciesScreen';
-
+import CharacterDetails from '../screens/CharacterDetailsScreen';
+import PlanetDetails from '../screens/PlanetDetailsScreen';
+import VehiclesDetails from '../screens/VehiclesDetailsScreen';
+import SpeciesDetails from '../screens/SpeciesDetailsScreen';
 
 const Stack = createStackNavigator();
 const defaultNavigationOptions = () => ({
@@ -29,6 +32,10 @@ const MainNavigator = () => {
       <Stack.Screen name={roots.starshipsScreen} component={Starships}/>
       <Stack.Screen name={roots.vehiclesScreen} component={Vehicles}/>
       <Stack.Screen name={roots.speciesScreen} component={Species}/>
+      <Stack.Screen name={roots.characterDetails} component={CharacterDetails}/>
+      <Stack.Screen name={roots.planetDetails} component={PlanetDetails}/>
+      <Stack.Screen name={roots.vehiclesDetails} component={VehiclesDetails}/>
+      <Stack.Screen name={roots.speciesDetails} component={SpeciesDetails}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
