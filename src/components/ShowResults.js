@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 
 const ShowResults = ({result, navigation}) => {
+  
   return (
     <View style={{justifyContent:'space-between'}}>
       <FlatList

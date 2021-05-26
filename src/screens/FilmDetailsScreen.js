@@ -10,17 +10,18 @@ const FilmDetails = ({route, navigation}) => {
 
   const search = async () => {
     const response = await fetchResults(`${item.id}`);
-    setResults(response.characters);
+    setResults(response);
   };
   useEffect(() => {
     search();
   }, []);
-  
+  console.log(item);
   return (
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={FilmDetailsStyles.mainContainer}>
+      <Button title="GO BACK" onPress = {() => navigation.goBack()}/>
         <Button
           style={FilmDetailsStyles.button}
           title="Go to Characters"

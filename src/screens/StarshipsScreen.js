@@ -1,10 +1,38 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, FlatList, TouchableOpacity, Button} from 'react-native';
+import {fetchResults} from '../api/index';
 
-const Starships = () => {
+const Starships = ({route, navigation}) => {
+  const url = route.params.results.starships;
+
+  const [starships, setStarships] = useState([]);
+
+  const getNames = () => {
+    Promise.all(
+      url.map(index => {
+        return fetchResults(index);
+      }),
+    ).then(values => setStarships(values));
+  };
+
+  useEffect(() => {
+    getNames();
+  }, []);
+  
   return (
-    <View>
-      <Text>Ecran Starships</Text>
+    <View style={{justifyContent: 'space-between'}}>
+      <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <FlatList
+        data={starships}
+        keyExtractor={() => Math.random() * 9999}
+        renderItem={({item}) => {
+          return (
+            <View style={{alignItems: 'center'}}>
+              <Text style={{marginTop: 20, marginLeft: 20}}>{item.name}</Text>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 };
