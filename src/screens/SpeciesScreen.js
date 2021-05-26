@@ -1,22 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Button} from 'react-native';
-import {fetchResults} from '../api/index';
+import {getNames} from '../api/index';
 
 const Species = ({route, navigation}) => {
   const url = route.params.results.species;
 
   const [species, setSpecies] = useState([]);
 
-  const getNames = () => {
-    Promise.all(
-      url.map(index => {
-        return fetchResults(index);
-      }),
-    ).then(values => setSpecies(values));
-  };
-
   useEffect(() => {
-    getNames();
+    getNames(url, setSpecies);
   }, []);
 
   return (

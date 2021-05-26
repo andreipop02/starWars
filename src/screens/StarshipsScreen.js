@@ -1,22 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Button} from 'react-native';
-import {fetchResults} from '../api/index';
+import {getNames} from '../api/index';
 
 const Starships = ({route, navigation}) => {
   const url = route.params.results.starships;
 
   const [starships, setStarships] = useState([]);
 
-  const getNames = () => {
-    Promise.all(
-      url.map(index => {
-        return fetchResults(index);
-      }),
-    ).then(values => setStarships(values));
-  };
 
   useEffect(() => {
-    getNames();
+    getNames(url, setStarships);
   }, []);
   
   return (

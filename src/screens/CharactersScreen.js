@@ -1,28 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Button} from 'react-native';
-import {fetchResults} from '../api/index';
-import {BASE_URL} from '../constants/url';
+import {getNames} from '../api/index';
 
 const Characters = ({route, navigation}) => {
   const url = route.params.results.characters;
 
   const [people, setPeople] = useState([]);
-
-  const getNames = () => {
-    Promise.all(
-      url.map(index => {
-        return fetchResults(index);
-      }),
-    ).then(values => setPeople(values));
-  };
-
+  
   useEffect(() => {
-    getNames();
+    getNames(url, setPeople);
   }, []);
+
   console.log(people);
   return (
     <View style={{justifyContent: 'space-between'}}>
-      <Button title="GO BACK" onPress = {() => navigation.goBack()}/>
+      <Button title="GO BACK" onPress={() => navigation.goBack()} />
       <FlatList
         data={people}
         keyExtractor={() => Math.random() * 9999}
