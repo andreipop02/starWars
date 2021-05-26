@@ -6,6 +6,7 @@ const FilmDetailsStyles = StyleSheet.create({
   mainContainer: {
     flex:1,
     justifyContent:'space-evenly',
+    alignItems: 'center'
   },
 });
 

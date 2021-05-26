@@ -1,8 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button, ImageBackground} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import FilmDetailsStyles from '../styles/FilmDetailsStyles';
 import background from '../styles/BackgroundStyle';
 import {fetchResults} from '../api/index';
+import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 
 const FilmDetails = ({route, navigation}) => {
   const item = route.params;
@@ -15,38 +22,44 @@ const FilmDetails = ({route, navigation}) => {
   useEffect(() => {
     search();
   }, []);
-  console.log(item);
+
   return (
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
+      <Button title="GO BACK" onPress={() => navigation.goBack()} />
       <View style={FilmDetailsStyles.mainContainer}>
-      <Button title="GO BACK" onPress = {() => navigation.goBack()}/>
-        <Button
-          style={FilmDetailsStyles.button}
-          title="Go to Characters"
-          onPress={() => navigation.navigate('characters', {results})}
-        />
-        <Button
-          style={FilmDetailsStyles.button}
-          title="Go to Planets"
-          onPress={() => navigation.navigate('planets', {results})}
-        />
-        <Button
-          style={FilmDetailsStyles.button}
-          title="Go to Starships"
-          onPress={() => navigation.navigate('starships', {results})}
-        />
-        <Button
-          style={FilmDetailsStyles.button}
-          title="Go to Vehicles"
-          onPress={() => navigation.navigate('vehicles', {results})}
-        />
-        <Button
-          style={FilmDetailsStyles.button}
-          title="Go to Species"
-          onPress={() => navigation.navigate('species', {results})}
-        />
+
+        <TouchableOpacity
+          style={SecondaryScreensStyles.touchableOpacity}
+          onPress={() => navigation.navigate('characters', {results})}>
+          <Text style={SecondaryScreensStyles.nameText}>Go to Characters</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={SecondaryScreensStyles.touchableOpacity}
+          onPress={() => navigation.navigate('planets', {results})}>
+          <Text style={SecondaryScreensStyles.nameText}>Go to Planets</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={SecondaryScreensStyles.touchableOpacity}
+          onPress={() => navigation.navigate('starships', {results})}>
+          <Text style={SecondaryScreensStyles.nameText}>Go to Starships</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={SecondaryScreensStyles.touchableOpacity}
+          onPress={() => navigation.navigate('vehicles', {results})}>
+          <Text style={SecondaryScreensStyles.nameText}>Go to Vehicles</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={SecondaryScreensStyles.touchableOpacity}
+          onPress={() => navigation.navigate('species', {results})}>
+          <Text style={SecondaryScreensStyles.nameText}>Go to Species</Text>
+        </TouchableOpacity>
+        
       </View>
     </ImageBackground>
   );

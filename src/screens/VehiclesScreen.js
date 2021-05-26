@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Button} from 'react-native';
 import {getNames} from '../api/index';
+import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 
 const Vehicles = ({route, navigation}) => {
   const url = route.params.results.vehicles;
@@ -12,15 +13,17 @@ const Vehicles = ({route, navigation}) => {
   }, []);
 
   return (
-    <View style={{justifyContent: 'space-between'}}>
+    <View style={{flex:1}}>
       <Button title="GO BACK" onPress={() => navigation.goBack()} />
       <FlatList
         data={vehicles}
         keyExtractor={() => Math.random() * 9999}
         renderItem={({item}) => {
           return (
-            <View style={{alignItems: 'center'}}>
-              <Text style={{marginTop: 20, marginLeft: 20}}>{item.name}</Text>
+            <View style={{alignItems: 'center', justifyContent:'space-evenly'}}>
+              <TouchableOpacity style={SecondaryScreensStyles.touchableOpacity}>
+              <Text style={SecondaryScreensStyles.nameText}>{item.name}</Text>
+              </TouchableOpacity>
             </View>
           );
         }}

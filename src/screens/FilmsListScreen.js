@@ -21,10 +21,8 @@ const FilmsList = ({navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
+      <Button title="Go back" onPress={() => navigation.goBack()} />
       <View style={{justifyContent: 'space-between', alignItems: 'center'}}>
-        <View style={FilmsStyles.button}>
-          <Button title="Go back" onPress={() => navigation.goBack()} />
-        </View>
         <ShowResults result={results} navigation={navigation} />
       </View>
     </ImageBackground>

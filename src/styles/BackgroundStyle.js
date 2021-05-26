@@ -4,7 +4,6 @@ const background = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
-    alignItems: 'center',
   },
 });
 

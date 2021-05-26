@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, FlatList, TouchableOpacity, Button} from 'react-native';
 import {getNames} from '../api/index';
+import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 
 const Species = ({route, navigation}) => {
   const url = route.params.results.species;
@@ -20,7 +21,9 @@ const Species = ({route, navigation}) => {
         renderItem={({item}) => {
           return (
             <View style={{alignItems: 'center'}}>
-              <Text style={{marginTop: 20, marginLeft: 20}}>{item.name}</Text>
+              <TouchableOpacity style={SecondaryScreensStyles.touchableOpacity}>
+              <Text style={SecondaryScreensStyles.nameText}>{item.name}</Text>
+              </TouchableOpacity>
             </View>
           );
         }}
