@@ -27,7 +27,6 @@ const SecondaryScreensStyles = StyleSheet.create({
   },
 
   detailsContainer: {
-  
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',

@@ -10,6 +10,6 @@ const roots = {
   characterDetails:'characterDetails',
   planetDetails:'planetDetails',
   vehiclesDetails:'vehiclesDetails',
-  speciesDetails:'speciesDetails'
+  speciesDetails:'speciesDetails',
 };
 export default roots;

@@ -3,11 +3,12 @@ import {View, Text, ImageBackground, Button} from 'react-native';
 import {fetchResults} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import {useNavigation} from '@react-navigation/native';
 
-const CharacterDetails = ({route, navigation}) => {
+const CharacterDetails = ({route}) => {
   const item = route.params;
+  const navigator = useNavigation();
   const [results, setResults] = useState([]);
-
   const search = async () => {
     const response = await fetchResults(`${item}`);
     setResults(response);
@@ -20,7 +21,7 @@ const CharacterDetails = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <Button title="GO BACK" onPress={() => navigator.goBack()} />
       <View style={SecondaryScreensStyles.detailsContainer}>
         <Text style={SecondaryScreensStyles.detailsText}>
           Name: {results.name}
