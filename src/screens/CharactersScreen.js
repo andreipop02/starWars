@@ -13,6 +13,7 @@ import background from '../styles/BackgroundStyle';
 import {useNavigation} from '@react-navigation/native';
 import roots from '../navigation/roots';
 import ResultsScreenStyles from '../styles/ResultsScreensStyles';
+import {strings} from '../constants/index';
 
 const Characters = ({route}) => {
   const url = route.params.results.characters;
@@ -28,7 +29,7 @@ const Characters = ({route}) => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={ResultsScreenStyles.mainContainer}>
-        <Button title="GO BACK" onPress={() => navigator.goBack()} />
+        <Button title={strings.back} onPress={() => navigator.goBack()} />
         <FlatList
           data={people}
           keyExtractor={people => people.url}

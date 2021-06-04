@@ -13,6 +13,7 @@ import background from '../styles/BackgroundStyle';
 import roots from '../navigation/roots';
 import {useNavigation} from '@react-navigation/native';
 import ResultsScreenStyles from '../styles/ResultsScreensStyles';
+import {strings} from '../constants/index';
 
 const Species = ({route}) => {
   const url = route.params.results.species;
@@ -28,7 +29,7 @@ const Species = ({route}) => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={ResultsScreenStyles.mainContainer}>
-        <Button title="GO BACK" onPress={() => navigator.goBack()} />
+        <Button title={strings.back} onPress={() => navigator.goBack()} />
         <FlatList
           data={species}
           keyExtractor={species => species.url}

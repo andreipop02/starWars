@@ -6,6 +6,7 @@ import {fetchResults} from '../api/index';
 import {BASE_URL} from '../constants/url';
 import {useNavigation} from '@react-navigation/native';
 import FilmsStyles from '../styles/FilmsListStyles';
+import {strings} from '../constants/index';
 
 const FilmsList = () => {
   const [results, setResults] = useState([]);
@@ -22,7 +23,7 @@ const FilmsList = () => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title="Go back" onPress={() => navigator.goBack()} />
+      <Button title={strings.back} onPress={() => navigator.goBack()} />
       <View style={FilmsStyles.resultsContainer}>
         <ShowResults result={results} />
       </View>

@@ -4,6 +4,7 @@ import homeStyle from '../styles/HomeScreenStyles';
 import background from '../styles/BackgroundStyle';
 import roots from '../navigation/roots';
 import {useNavigation} from '@react-navigation/native';
+import {strings} from '../constants/index';
 
 const Home = () => {
   const navigator = useNavigation();
@@ -12,13 +13,13 @@ const Home = () => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={homeStyle.mainContainer}>
-        <Text style={homeStyle.mainText}>Welcome to Star Wars</Text>
+        <Text style={homeStyle.mainText}>{strings.welcome}</Text>
         <TouchableOpacity
           style={homeStyle.touchableOpacity}
           onPress={() => navigator.navigate(roots.filmListScreen)}>
-          <Text style={homeStyle.touchableText}>GO TO FILMS</Text>
+          <Text style={homeStyle.touchableText}>{strings.gotoFilms}</Text>
         </TouchableOpacity>
-        <Text style={homeStyle.secondaryText}>ALL CREDITS GOES TO NMCP</Text>
+        <Text style={homeStyle.secondaryText}>{strings.credits}</Text>
       </View>
     </ImageBackground>
   );
