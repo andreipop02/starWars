@@ -1,20 +1,33 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
+import {colors, metrics} from '../constants/index';
 
 const homeStyle = StyleSheet.create({
   mainText: {
-    marginTop:30,
-    fontSize: 30,
-    color: 'white',
-    fontWeight:'bold'
+    marginTop: metrics.size30,
+    fontSize: metrics.size30,
+    color: colors.white,
+    fontWeight: 'bold',
+  },
+  secondaryText: {
+    marginTop: metrics.size50,
+    color: colors.white,
+    fontSize: metrics.size15,
   },
   touchableOpacity: {
-    backgroundColor: 'rgb(0,0,153)',
-    height: 30,
-    width: 150,
+    backgroundColor: colors.dodgerBlue,
+    padding: metrics.size5,
     alignItems: 'center',
-    marginTop: 50,
-    justifyContent: 'center'
+    marginTop: metrics.size50,
+    justifyContent: 'center',
+    borderRadius: metrics.size12,
+  },
+  touchableText: {
+    color: colors.white,
+    fontSize: metrics.size20,
+  },
+  mainContainer: {
+    alignItems: 'center',
+    flex: metrics.size1,
   },
 });
 

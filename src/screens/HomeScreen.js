@@ -2,22 +2,27 @@ import React from 'react';
 import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import homeStyle from '../styles/HomeScreenStyles';
 import background from '../styles/BackgroundStyle';
+import roots from '../navigation/roots';
+import {useNavigation} from '@react-navigation/native';
+import {strings} from '../constants/index';
 
-const home = ({navigation}) => {
+const Home = () => {
+  const navigator = useNavigation();
   return (
-    <View style={({alignItems: 'center'}, {flex: 1})}>
-      <ImageBackground
-        style={background.backgroundImage}
-        source={require('../../assets/starBackground.jpg')}>
-        <Text style={homeStyle.mainText}>This is the HomeScreen</Text>
+    <ImageBackground
+      style={background.backgroundImage}
+      source={require('../../assets/starBackground.jpg')}>
+      <View style={homeStyle.mainContainer}>
+        <Text style={homeStyle.mainText}>{strings.welcome}</Text>
         <TouchableOpacity
           style={homeStyle.touchableOpacity}
-          onPress={() => navigation.navigate('films')}>
-          <Text style={{color: 'white', fontSize: 20}}>GO TO FILMS</Text>
+          onPress={() => navigator.navigate(roots.filmListScreen)}>
+          <Text style={homeStyle.touchableText}>{strings.gotoFilms}</Text>
         </TouchableOpacity>
-      </ImageBackground>
-    </View>
+        <Text style={homeStyle.secondaryText}>{strings.credits}</Text>
+      </View>
+    </ImageBackground>
   );
 };
 
-export default home;
+export default Home;

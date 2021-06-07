@@ -1,1 +1,2 @@
-export {fetchAllFilms} from './swAPI';
+export {fetchResults} from './swAPI';
+export {getNames} from './helperFunctions';

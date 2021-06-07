@@ -1,30 +1,34 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button, ImageBackground} from 'react-native';
+import {View, Button, ImageBackground} from 'react-native';
 import ShowResults from '../components/ShowResults';
-import FilmsStyles from '../styles/FilmsListStyles';
 import background from '../styles/BackgroundStyle';
-import {fetchAllFilms} from '../api/index';
+import {fetchResults} from '../api/index';
+import {BASE_URL} from '../constants/url';
+import {useNavigation} from '@react-navigation/native';
+import FilmsStyles from '../styles/FilmsListStyles';
+import {strings} from '../constants/index';
 
-const Films = ({navigation}) => {
+const FilmsList = () => {
   const [results, setResults] = useState([]);
-
+  const navigator = useNavigation();
   const search = async () => {
-    const response = await fetchAllFilms();
-    setResults(response);
+    const response = await fetchResults(`${BASE_URL}/films/`);
+    setResults(response.results);
   };
   useEffect(() => {
     search();
   }, []);
 
-  console.log(results)
   return (
-    <View style={{ justifyContent:'space-between', alignItems:'center'}}>
-      <View style={FilmsStyles.button}>
-        <Button title="Go back" onPress={() => navigation.goBack()} />
+    <ImageBackground
+      style={background.backgroundImage}
+      source={require('../../assets/starBackground.jpg')}>
+      <Button title={strings.back} onPress={() => navigator.goBack()} />
+      <View style={FilmsStyles.resultsContainer}>
+        <ShowResults result={results} />
       </View>
-      <ShowResults result={results} />
-    </View>
+    </ImageBackground>
   );
 };
 
-export default Films;
+export default FilmsList;
