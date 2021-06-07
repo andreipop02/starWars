@@ -18,9 +18,13 @@ import {strings} from '../constants/index';
 const Planets = ({route}) => {
   const url = route.params.results.planets;
   const navigator = useNavigation();
-
   const [planets, setPlanets] = useState([]);
-
+  const navigateToPlanetsDetails = param => {
+    navigator.navigate(roots.planetDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setPlanets);
   }, []);
@@ -30,17 +34,16 @@ const Planets = ({route}) => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={ResultsScreenStyles.mainContainer}>
-        <Button title={strings.back} onPress={() => navigator.goBack()} />
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={planets}
           keyExtractor={planets => planets.url}
           renderItem={({item}) => {
             return (
-              <View
-              style={ResultsScreenStyles.flatListContainer}>
+              <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() => navigator.navigate(roots.planetDetails, item.url)}>
+                  onPress={() => navigateToPlanetsDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>

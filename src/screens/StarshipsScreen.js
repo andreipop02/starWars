@@ -19,7 +19,12 @@ const Starships = ({route}) => {
   const url = route.params.results.starships;
   const navigator = useNavigation();
   const [starships, setStarships] = useState([]);
-
+  const navigateToVehiclesDetails = param => {
+    navigator.navigate(roots.vehiclesDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setStarships);
   }, []);
@@ -29,7 +34,7 @@ const Starships = ({route}) => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={ResultsScreenStyles.mainContainer}>
-        <Button title={strings.back} onPress={() => navigator.goBack()} />
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={starships}
           keyExtractor={starships => starships.url}
@@ -38,9 +43,7 @@ const Starships = ({route}) => {
               <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigator.navigate(roots.vehiclesDetails, item.url)
-                  }>
+                  onPress={() => navigateToVehiclesDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>

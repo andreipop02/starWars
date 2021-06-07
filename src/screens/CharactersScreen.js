@@ -19,7 +19,12 @@ const Characters = ({route}) => {
   const url = route.params.results.characters;
   const navigator = useNavigation();
   const [people, setPeople] = useState([]);
-
+  const navigateToCharactersDetails = param => {
+    navigator.navigate(roots.characterDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setPeople);
   }, []);
@@ -29,7 +34,7 @@ const Characters = ({route}) => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={ResultsScreenStyles.mainContainer}>
-        <Button title={strings.back} onPress={() => navigator.goBack()} />
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={people}
           keyExtractor={people => people.url}
@@ -38,9 +43,7 @@ const Characters = ({route}) => {
               <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigator.navigate(roots.characterDetails, item.url)
-                  }>
+                  onPress={() => navigateToCharactersDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>

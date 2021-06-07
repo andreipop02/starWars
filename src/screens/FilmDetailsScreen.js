@@ -28,6 +28,18 @@ const FilmDetails = ({route}) => {
   const navigateToCharactersScreen = () => {
     navigator.navigate(roots.charactersScreen, {results});
   };
+  const navigateToPlanetsScreen = () => {
+    navigator.navigate(roots.planetsScreen, {results});
+  };
+  const navigateToStarshipsScreen = () => {
+    navigator.navigate(roots.starshipsScreen, {results});
+  };
+  const navigateToVehiclesScreen = () => {
+    navigator.navigate(roots.vehiclesScreen, {results});
+  };
+  const navigateToSpeciesScreen = () => {
+    navigator.navigate(roots.speciesScreen, {results});
+  };
   return (
     <ImageBackground
       style={background.backgroundImage}
@@ -44,7 +56,7 @@ const FilmDetails = ({route}) => {
 
         <TouchableOpacity
           style={SecondaryScreensStyles.touchableOpacity}
-          onPress={() => navigator.navigate(roots.planetsScreen, {results})}>
+          onPress={() => navigateToPlanetsScreen()}>
           <Text style={SecondaryScreensStyles.nameText}>
             {strings.gotoPlanets}
           </Text>
@@ -52,7 +64,7 @@ const FilmDetails = ({route}) => {
 
         <TouchableOpacity
           style={SecondaryScreensStyles.touchableOpacity}
-          onPress={() => navigator.navigate(roots.starshipsScreen, {results})}>
+          onPress={() => navigateToStarshipsScreen()}>
           <Text style={SecondaryScreensStyles.nameText}>
             {strings.gotoStarships}
           </Text>
@@ -60,7 +72,7 @@ const FilmDetails = ({route}) => {
 
         <TouchableOpacity
           style={SecondaryScreensStyles.touchableOpacity}
-          onPress={() => navigator.navigate(roots.vehiclesScreen, {results})}>
+          onPress={() => navigateToVehiclesScreen()}>
           <Text style={SecondaryScreensStyles.nameText}>
             {strings.gotoVehicles}
           </Text>
@@ -68,7 +80,7 @@ const FilmDetails = ({route}) => {
 
         <TouchableOpacity
           style={SecondaryScreensStyles.touchableOpacity}
-          onPress={() => navigator.navigate(roots.speciesScreen, {results})}>
+          onPress={() => navigateToSpeciesScreen()}>
           <Text style={SecondaryScreensStyles.nameText}>
             {strings.gotoSpecies}
           </Text>

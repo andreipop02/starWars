@@ -19,7 +19,12 @@ const Species = ({route}) => {
   const url = route.params.results.species;
   const navigator = useNavigation();
   const [species, setSpecies] = useState([]);
-
+  const navigateToSpeciesDetails = param => {
+    navigator.navigate(roots.speciesDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setSpecies);
   }, []);
@@ -29,7 +34,7 @@ const Species = ({route}) => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={ResultsScreenStyles.mainContainer}>
-        <Button title={strings.back} onPress={() => navigator.goBack()} />
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={species}
           keyExtractor={species => species.url}
@@ -38,9 +43,7 @@ const Species = ({route}) => {
               <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigator.navigate(roots.speciesDetails, item.url)
-                  }>
+                  onPress={() => navigateToSpeciesDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>
