@@ -6,6 +6,9 @@ import ComponentsStyles from '../styles/ComponentsStyles';
 
 const ShowResults = ({result}) => {
   const navigator = useNavigation();
+  const navigateToFilmDetails = param => {
+    navigator.navigate(roots.filmDetailsScreen, param);
+  };
   return (
     <View style={ComponentsStyles.mainContainer}>
       <FlatList
@@ -15,9 +18,7 @@ const ShowResults = ({result}) => {
         renderItem={({item}) => {
           return (
             <TouchableOpacity
-              onPress={() =>
-                navigator.navigate(roots.filmDetailsScreen, {id: item.url})
-              }>
+              onPress={() => navigateToFilmDetails({id: item.url})}>
               <Text style={ComponentsStyles.id_text}>
                 Episode {item.episode_id}:
               </Text>

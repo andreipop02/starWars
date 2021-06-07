@@ -15,6 +15,9 @@ const FilmsList = () => {
     const response = await fetchResults(`${BASE_URL}/films/`);
     setResults(response.results);
   };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     search();
   }, []);
@@ -23,7 +26,7 @@ const FilmsList = () => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title={strings.back} onPress={() => navigator.goBack()} />
+      <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
       <View style={FilmsStyles.resultsContainer}>
         <ShowResults result={results} />
       </View>

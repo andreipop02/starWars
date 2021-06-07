@@ -14,6 +14,9 @@ const SpeciesDetails = ({route}) => {
     const response = await fetchResults(`${item}`);
     setResults(response);
   };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     search();
   }, []);
@@ -22,7 +25,7 @@ const SpeciesDetails = ({route}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title={strings.back} onPress={() => navigator.goBack()} />
+      <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
       <View style={SecondaryScreensStyles.detailsContainer}>
         <Text style={SecondaryScreensStyles.detailsText}>
           {strings.name} {results.name}

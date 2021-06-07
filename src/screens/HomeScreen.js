@@ -8,6 +8,9 @@ import {strings} from '../constants/index';
 
 const Home = () => {
   const navigator = useNavigation();
+  const navigateToFilmListScreen = () => {
+    navigator.navigate(roots.filmListScreen);
+  };
   return (
     <ImageBackground
       style={background.backgroundImage}
@@ -16,7 +19,7 @@ const Home = () => {
         <Text style={homeStyle.mainText}>{strings.welcome}</Text>
         <TouchableOpacity
           style={homeStyle.touchableOpacity}
-          onPress={() => navigator.navigate(roots.filmListScreen)}>
+          onPress={() => navigateToFilmListScreen()}>
           <Text style={homeStyle.touchableText}>{strings.gotoFilms}</Text>
         </TouchableOpacity>
         <Text style={homeStyle.secondaryText}>{strings.credits}</Text>

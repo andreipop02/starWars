@@ -19,7 +19,12 @@ const Vehicles = ({route}) => {
   const url = route.params.results.vehicles;
   const navigator = useNavigation();
   const [vehicles, setVehicles] = useState([]);
-
+  const navigateToVehiclesDetails = param => {
+    navigator.navigate(roots.vehiclesDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setVehicles);
   }, []);
@@ -29,7 +34,7 @@ const Vehicles = ({route}) => {
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
       <View style={ResultsScreenStyles.mainContainer}>
-        <Button title={strings.back} onPress={() => navigator.goBack()} />
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={vehicles}
           keyExtractor={vehicles => vehicles.url}
@@ -38,9 +43,7 @@ const Vehicles = ({route}) => {
               <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigator.navigate(roots.vehiclesDetails, item.url)
-                  }>
+                  onPress={() => navigateToVehiclesDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>
