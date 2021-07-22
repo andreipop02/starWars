@@ -1,8 +1,9 @@
 import {StyleSheet} from 'react-native';
+import {metrics} from '../constants/index';
 
 const background = StyleSheet.create({
   backgroundImage: {
-    flex: 1,
+    flex: metrics.size1,
     resizeMode: 'cover',
   },
 });

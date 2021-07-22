@@ -3,14 +3,19 @@ import {View, Text, ImageBackground, Button} from 'react-native';
 import {fetchResults} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import {useNavigation} from '@react-navigation/native';
+import {strings} from '../constants/index';
 
-const SpeciesDetails = ({route, navigation}) => {
+const SpeciesDetails = ({route}) => {
   const item = route.params;
   const [results, setResults] = useState([]);
-
+  const navigator = useNavigation();
   const search = async () => {
     const response = await fetchResults(`${item}`);
     setResults(response);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
   };
   useEffect(() => {
     search();
@@ -20,31 +25,31 @@ const SpeciesDetails = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
       <View style={SecondaryScreensStyles.detailsContainer}>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Name: {results.name}
+          {strings.name} {results.name}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Classification: {results.classification}
+          {strings.classification} {results.classification}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Designation: {results.designation}
+          {strings.designation} {results.designation}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Average height: {results.average_height}
+          {strings.averageHeight} {results.average_height}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Skin Colors: {results.skin_colors}
+          {strings.skinColors} {results.skin_colors}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Hair Colors: {results.hair_colors}
+          {strings.hairColors} {results.hair_colors}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Average Lifespan: {results.average_lifespan}
+          {strings.averageLifespan} {results.average_lifespan}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Language: {results.language}
+          {strings.language} {results.language}
         </Text>
       </View>
     </ImageBackground>

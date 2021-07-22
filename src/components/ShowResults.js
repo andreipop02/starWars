@@ -1,19 +1,28 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
+import roots from '../navigation/roots';
+import {useNavigation} from '@react-navigation/native';
+import ComponentsStyles from '../styles/ComponentsStyles';
 
-const ShowResults = ({result, navigation}) => {
-  
+const ShowResults = ({result}) => {
+  const navigator = useNavigation();
+  const navigateToFilmDetails = param => {
+    navigator.navigate(roots.filmDetailsScreen, param);
+  };
   return (
-    <View style={{justifyContent:'space-between'}}>
+    <View style={ComponentsStyles.mainContainer}>
       <FlatList
-        vertical = {true}
+        vertical={true}
         data={result}
         keyExtractor={result => result.episode_id}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity onPress={() => navigation.navigate('filmDetails',{id: item.url})}>
-              <Text style={{textAlign: 'center', marginTop:50, color:'white', fontWeight:'bold', fontSize:22}}>Episode {item.episode_id}:</Text>
-              <Text style={{textAlign: 'center', color:'white', fontWeight:'bold', fontSize:22}}>{item.title}</Text>
+            <TouchableOpacity
+              onPress={() => navigateToFilmDetails({id: item.url})}>
+              <Text style={ComponentsStyles.id_text}>
+                Episode {item.episode_id}:
+              </Text>
+              <Text style={ComponentsStyles.title_text}>{item.title}</Text>
             </TouchableOpacity>
           );
         }}

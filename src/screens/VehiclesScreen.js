@@ -10,12 +10,21 @@ import {
 import {getNames} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import roots from '../navigation/roots';
+import {useNavigation} from '@react-navigation/native';
+import ResultsScreenStyles from '../styles/ResultsScreensStyles';
+import {strings} from '../constants/index';
 
-const Vehicles = ({route, navigation}) => {
+const Vehicles = ({route}) => {
   const url = route.params.results.vehicles;
-
+  const navigator = useNavigation();
   const [vehicles, setVehicles] = useState([]);
-
+  const navigateToVehiclesDetails = param => {
+    navigator.navigate(roots.vehiclesDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setVehicles);
   }, []);
@@ -24,20 +33,17 @@ const Vehicles = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <View style={{flex: 1}}>
-        <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <View style={ResultsScreenStyles.mainContainer}>
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={vehicles}
           keyExtractor={vehicles => vehicles.url}
           renderItem={({item}) => {
             return (
-              <View
-                style={{alignItems: 'center', justifyContent: 'space-evenly'}}>
+              <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigation.navigate('vehiclesDetails', item.url)
-                  }>
+                  onPress={() => navigateToVehiclesDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>

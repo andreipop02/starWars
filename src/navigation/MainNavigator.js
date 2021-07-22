@@ -15,6 +15,7 @@ import PlanetDetails from '../screens/PlanetDetailsScreen';
 import VehiclesDetails from '../screens/VehiclesDetailsScreen';
 import SpeciesDetails from '../screens/SpeciesDetailsScreen';
 
+
 const Stack = createStackNavigator();
 const defaultNavigationOptions = () => ({
     gestureEnabled: false,

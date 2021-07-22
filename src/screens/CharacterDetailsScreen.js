@@ -3,14 +3,19 @@ import {View, Text, ImageBackground, Button} from 'react-native';
 import {fetchResults} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import {useNavigation} from '@react-navigation/native';
+import {strings} from '../constants/index';
 
-const CharacterDetails = ({route, navigation}) => {
+const CharacterDetails = ({route}) => {
   const item = route.params;
+  const navigator = useNavigation();
   const [results, setResults] = useState([]);
-
   const search = async () => {
     const response = await fetchResults(`${item}`);
     setResults(response);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
   };
   useEffect(() => {
     search();
@@ -20,31 +25,31 @@ const CharacterDetails = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
       <View style={SecondaryScreensStyles.detailsContainer}>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Name: {results.name}
+          {strings.name} {results.name}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Height: {results.height}
+          {strings.height} {results.height}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Mass: {results.mass}
+          {strings.mass} {results.mass}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Hair Color: {results.hair_color}
+          {strings.hairColor} {results.hair_color}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Skin Color: {results.skin_color}
+          {strings.skinColor} {results.skin_color}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Eye Color: {results.eye_color}
+          {strings.eyeColor} {results.eye_color}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Birth Year: {results.birth_year}
+          {strings.birthYear} {results.birth_year}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Gender: {results.gender}
+          {strings.gender} {results.gender}
         </Text>
       </View>
     </ImageBackground>

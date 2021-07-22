@@ -10,12 +10,21 @@ import {
 import {getNames} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import roots from '../navigation/roots';
+import {useNavigation} from '@react-navigation/native';
+import ResultsScreenStyles from '../styles/ResultsScreensStyles';
+import {strings} from '../constants/index';
 
-const Starships = ({route, navigation}) => {
+const Starships = ({route}) => {
   const url = route.params.results.starships;
-
+  const navigator = useNavigation();
   const [starships, setStarships] = useState([]);
-
+  const navigateToVehiclesDetails = param => {
+    navigator.navigate(roots.vehiclesDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setStarships);
   }, []);
@@ -24,19 +33,17 @@ const Starships = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <View style={({justifyContent: 'space-between'}, {flex: 1})}>
-        <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <View style={ResultsScreenStyles.mainContainer}>
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={starships}
           keyExtractor={starships => starships.url}
           renderItem={({item}) => {
             return (
-              <View style={{alignItems: 'center'}}>
+              <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigation.navigate('vehiclesDetails', item.url)
-                  }>
+                  onPress={() => navigateToVehiclesDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>

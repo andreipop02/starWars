@@ -10,12 +10,21 @@ import {
 import {getNames} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import {useNavigation} from '@react-navigation/native';
+import roots from '../navigation/roots';
+import ResultsScreenStyles from '../styles/ResultsScreensStyles';
+import {strings} from '../constants/index';
 
-const Planets = ({route, navigation}) => {
+const Planets = ({route}) => {
   const url = route.params.results.planets;
-
+  const navigator = useNavigation();
   const [planets, setPlanets] = useState([]);
-
+  const navigateToPlanetsDetails = param => {
+    navigator.navigate(roots.planetDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setPlanets);
   }, []);
@@ -24,24 +33,17 @@ const Planets = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <View>
-        <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <View style={ResultsScreenStyles.mainContainer}>
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={planets}
           keyExtractor={planets => planets.url}
           renderItem={({item}) => {
             return (
-              <View
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'space-evenly',
-                  flex: 1,
-                }}>
+              <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigation.navigate('planetDetails', item.url)
-                  }>
+                  onPress={() => navigateToPlanetsDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>

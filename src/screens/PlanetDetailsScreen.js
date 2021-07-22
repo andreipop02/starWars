@@ -3,14 +3,19 @@ import {View, Text, ImageBackground, Button} from 'react-native';
 import {fetchResults} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import {useNavigation} from '@react-navigation/native';
+import {strings} from '../constants/index';
 
-const PlanetDetails = ({route, navigation}) => {
+const PlanetDetails = ({route}) => {
   const item = route.params;
   const [results, setResults] = useState([]);
-
+  const navigator = useNavigation();
   const search = async () => {
     const response = await fetchResults(`${item}`);
     setResults(response);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
   };
   useEffect(() => {
     search();
@@ -20,31 +25,31 @@ const PlanetDetails = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
       <View style={SecondaryScreensStyles.detailsContainer}>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Name: {results.name}
+          {strings.name} {results.name}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Rotation Period: {results.rotation_period}
+          {strings.rotation} {results.rotation_period}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Orbital Period: {results.orbital_period}
+          {strings.orbital} {results.orbital_period}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Diameter: {results.diameter}
+          {strings.diameter} {results.diameter}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Climate: {results.climate}
+          {strings.climate} {results.climate}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Gravity: {results.gravity}
+          {strings.gravity} {results.gravity}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Terrain: {results.terrain}
+          {strings.terrain} {results.terrain}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Population: {results.population}
+          {strings.population} {results.population}
         </Text>
       </View>
     </ImageBackground>

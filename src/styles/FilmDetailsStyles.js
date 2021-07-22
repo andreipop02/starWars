@@ -1,12 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {metrics} from '../constants/index';
 
 const FilmDetailsStyles = StyleSheet.create({
-  button: {
-  },
   mainContainer: {
-    flex:1,
-    justifyContent:'space-evenly',
-    alignItems: 'center'
+    flex: metrics.size1,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
 });
 

@@ -3,11 +3,13 @@ import {View, Text, ImageBackground, Button} from 'react-native';
 import {fetchResults} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import {useNavigation} from '@react-navigation/native';
+import {strings} from '../constants/index';
 
-const VehiclesDetails = ({route, navigation}) => {
+const VehiclesDetails = ({route}) => {
   const item = route.params;
   const [results, setResults] = useState([]);
-
+  const navigator = useNavigation();
   const search = async () => {
     const response = await fetchResults(`${item}`);
     setResults(response);
@@ -15,39 +17,41 @@ const VehiclesDetails = ({route, navigation}) => {
   useEffect(() => {
     search();
   }, []);
-
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   return (
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
       <View style={SecondaryScreensStyles.detailsContainer}>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Name: {results.name}
+          {strings.name} {results.name}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Model: {results.model}
+          {strings.model} {results.model}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Manufacturer: {results.manufacturer}
+          {strings.manufacturer} {results.manufacturer}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Cost (in credits): {results.cost_in_credits}
+          {strings.cost} {results.cost_in_credits}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Length: {results.length}
+          {strings.length} {results.length}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Crew: {results.crew}
+          {strings.crew} {results.crew}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Passengers: {results.passengers}
+          {strings.passengers} {results.passengers}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Cargo Capacity: {results.cargo_capacity}
+          {strings.cargo} {results.cargo_capacity}
         </Text>
         <Text style={SecondaryScreensStyles.detailsText}>
-          Consumables: {results.consumables}
+          {strings.consumables} {results.consumables}
         </Text>
       </View>
     </ImageBackground>

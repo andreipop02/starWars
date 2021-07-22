@@ -1,37 +1,34 @@
 import {StyleSheet} from 'react-native';
+import {colors, metrics} from '../constants/index';
 
 const SecondaryScreensStyles = StyleSheet.create({
   touchableOpacity: {
     backgroundColor: 'rgba(255,140,0,1)',
-    height: 50,
-    width: 200,
-    alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 30,
-    justifyContent: 'center',
-    borderRadius: 10,
+    padding: metrics.size10,
+    marginTop: metrics.size30,
+    marginBottom: metrics.size30,
+    borderRadius: metrics.size10,
   },
 
   nameText: {
-    fontSize: 20,
+    fontSize: metrics.size20,
     color: 'white',
     fontWeight: 'bold',
   },
 
   detailsText: {
-    fontSize: 25,
-    color: 'rgb(255,215,0)',
+    fontSize: metrics.size25,
+    color: colors.gold,
     fontWeight: 'bold',
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    borderRadius: 5,
+    backgroundColor: colors.demiBlack,
+    borderRadius: metrics.size5,
   },
 
   detailsContainer: {
-  
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    flex: 1,
+    flex: metrics.size1,
   },
 });
 

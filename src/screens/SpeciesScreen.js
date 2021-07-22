@@ -10,12 +10,21 @@ import {
 import {getNames} from '../api/index';
 import SecondaryScreensStyles from '../styles/SecondaryScreensStyles';
 import background from '../styles/BackgroundStyle';
+import roots from '../navigation/roots';
+import {useNavigation} from '@react-navigation/native';
+import ResultsScreenStyles from '../styles/ResultsScreensStyles';
+import {strings} from '../constants/index';
 
-const Species = ({route, navigation}) => {
+const Species = ({route}) => {
   const url = route.params.results.species;
-
+  const navigator = useNavigation();
   const [species, setSpecies] = useState([]);
-
+  const navigateToSpeciesDetails = param => {
+    navigator.navigate(roots.speciesDetails, param);
+  };
+  const navigateToPrevScreen = () => {
+    navigator.goBack();
+  };
   useEffect(() => {
     getNames(url, setSpecies);
   }, []);
@@ -24,19 +33,17 @@ const Species = ({route, navigation}) => {
     <ImageBackground
       style={background.backgroundImage}
       source={require('../../assets/starBackground.jpg')}>
-      <View style={{justifyContent: 'space-between'}}>
-        <Button title="GO BACK" onPress={() => navigation.goBack()} />
+      <View style={ResultsScreenStyles.mainContainer}>
+        <Button title={strings.back} onPress={() => navigateToPrevScreen()} />
         <FlatList
           data={species}
           keyExtractor={species => species.url}
           renderItem={({item}) => {
             return (
-              <View style={{alignItems: 'center'}}>
+              <View style={ResultsScreenStyles.flatListContainer}>
                 <TouchableOpacity
                   style={SecondaryScreensStyles.touchableOpacity}
-                  onPress={() =>
-                    navigation.navigate('speciesDetails', item.url)
-                  }>
+                  onPress={() => navigateToSpeciesDetails(item.url)}>
                   <Text style={SecondaryScreensStyles.nameText}>
                     {item.name}
                   </Text>
